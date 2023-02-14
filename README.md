@@ -1,35 +1,38 @@
-# 工程科技问答
+# RocketQAv2
 
-功能：输入工程科技问答query，返回该问题对应的answer
+## 算法描述
+提出统一的联合训练优化方法，首次实现召回和精排的联合训练: 改进精排模型训练目标，提出动态软蒸馏方法，增强的负例采样方式。
 
-## 使用说明
+## 环境 & 安装
 
-- Method: POST
-- URL: 详见系统地址
-- 输入参数
+```shell
+Python 3.7
+PaddlePaddle 1.8 (Please refer to the Installation Guide)
+cuda >= 9.0
+cudnn >= 7.0
+faiss
+```
 
-| 参数 | 类型 | 是否必须 | 描述 |
-| --- | --- | --- | --- |
-|query|string|required|一段问答描述|
+## 使用
 
-- 返回结果
+```shell
+# Download data
+- sh wget_data.sh
 
-| 参数 | 类型 | 是否必须 | 描述 |
-| --- | --- | --- | --- |
-|errno|string|是|状态码，0表示正常，-1表示服务异常|
-|query|string|是|输入问答描述|
-|result|string|是|答案|
-|url|string|是|答案对应的网页链接|
+# Download the trained models
+- sh wget_trained_model.sh
 
+# Joint Model Training
+cd model
+sh script/run_joint-model_train.sh $TRAIN_SET $MODEL_PATH $nodes $epochs $instance_num
 
-## 示例
-输入
-- {"query": "正电子是谁发现的"}
+# Dual-encoder inference
+sh script/run_retrieval.sh $TEST_SET $MODEL_PATH $DATA_PATH $TOP_K
 
-输出
-- {
-    "errno": "0",
-    "query": "正电子是谁发现的",
-    "result": "正电子是基本粒子的一种,带正电荷,质和电子相等,是电子的反粒子。也叫阳电子。最早是由狄拉克从理论上预言的。1932年8月2日,美国加州工学院的安德森等人向全世界庄严宣告,他们发现了正电子。其实在安德森之前,曾有一对夫妇科学家——约里奥·居里夫妇(皮埃尔·居里夫妇的女婿与女儿)首先观察到正电子的存在,...",
-    "url": "https://zhidao.baidu.com/question/1930942351464664947.html"
-}
+# Cross-encoder inference
+sh script/run_reranking.sh $TEST_SET $MODEL_PATH
+
+```
+
+## 论文/专利引用
+
