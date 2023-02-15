@@ -1,38 +1,47 @@
-# RocketQAv2
+# 算法库和模型库清单
 
-## 算法描述
-提出统一的联合训练优化方法，首次实现召回和精排的联合训练: 改进精排模型训练目标，提出动态软蒸馏方法，增强的负例采样方式。
+## 算法库列表 (总共20个)
 
-## 环境 & 安装
+### 知识推理与应用算法(12)
 
-```shell
-Python 3.7
-PaddlePaddle 1.8 (Please refer to the Installation Guide)
-cuda >= 9.0
-cudnn >= 7.0
-faiss
-```
+- 对偶式检索增强问答算法RocketQA
+- 统一联合优化问答算法RocketQAv2
+- 事件图谱增强的对话推荐算法EGRL
+- 知识增强的对话生成算法PLATO-2
+- 对话推荐图谱自动发现算法DVAE-GNN
+- 跨类型对话推荐算法Durecdial
+- 跨语言对话推荐算法Durecdial2
+- 稠密段落检索算法PAIR
+- 常识图谱增强的对话推荐话题切换算法
+- 多源数据增强的对话推荐算法
+- 层次化图谱增强的跨类型对话推荐算法
+- 自动化对话推荐语料产出算法
 
-## 使用
+### 多模态知识抽取算法(8)
 
-```shell
-# Download data
-- sh wget_data.sh
+- 开放域信息抽取算法MONET
+- 通用信息抽取统一框架UIE
+- 词性专名识别算法LAC
+- 文本话题抽取框架Familia
+- 多对多信息抽取算法
+- 名词短语标注算法NPTag
+- 规则信息抽取算法WordTag-IE
+- 中文词类知识标注WordTag
 
-# Download the trained models
-- sh wget_trained_model.sh
+## 模型库列表 (总共10个)
 
-# Joint Model Training
-cd model
-sh script/run_joint-model_train.sh $TRAIN_SET $MODEL_PATH $nodes $epochs $instance_num
+### 信息抽取模型(5)
 
-# Dual-encoder inference
-sh script/run_retrieval.sh $TEST_SET $MODEL_PATH $DATA_PATH $TOP_K
+- 通用信息抽取模型
+- 评论信息抽取
+- 文本专名抽取
+- 上位概念抽取
+- 关键词抽取模型
 
-# Cross-encoder inference
-sh script/run_reranking.sh $TEST_SET $MODEL_PATH
+### 知识应用模型(5)
 
-```
-
-## 论文/专利引用
-Ruiyang Ren, Yingqi Qu, Jing Liu, Wayne Xin Zhao, QiaoQiao She, Hua Wu, Haifeng Wang, and Ji-Rong Wen. 2021. RocketQAv2: A Joint Training Method for Dense Passage Retrieval and Passage Re-ranking. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing, pages 2825–2835, Online and Punta Cana, Dominican Republic. Association for Computational Linguistics.
+- **工程科技问答**
+- **对话式推荐**
+- **学术问答与综述**
+- 单轮推荐话术生成
+- 多轮常识图谱增强的引导式推荐模型
